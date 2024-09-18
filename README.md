@@ -1,2 +1,2 @@
 # Faculdade_Haskell
-Descreva aqui
+Repositório contendo estudos e atividades em Haskell realizados durante o curso de Ciência da Computação pela UESB, na disciplina Programação Declarativa ministrada pelo professor Stênio. Esse repositório inclui exercícios práticos, pequenos projetos acadêmicos e exemplos de programação com paradigma funcional e o paradigma lógico com foco no desenvolvimento de habilidades em Haskell e Prolog.
