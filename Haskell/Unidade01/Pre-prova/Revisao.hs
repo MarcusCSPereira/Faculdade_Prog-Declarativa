@@ -95,3 +95,46 @@ formatarConta list = formatarLinhas list ++ formatarTotal (calcularTotal list)
 imprimirConta :: [CodigoBarra] -> IO()
 imprimirConta lista = putStr (formatarConta (fazerConta lista))
 
+isSorted :: [Int] -> Bool
+isSorted [] = True
+isSorted (a:b)
+  | menor a b == a = isSorted b
+  | otherwise = False
+
+menor :: Int -> [Int] -> Int
+menor m [] = m
+menor m (a:b)
+  | a < m = menor a b
+  | otherwise = menor m b
+
+type Resultado = [Int]
+type Jogos = [[Int]]
+
+premiados :: Resultado -> Jogos -> Int
+premiados _ [] = 0
+premiados r (x:y)
+  | premiado r x = 1 + premiados r y
+  | otherwise = premiados r y
+
+premiado :: Resultado -> [Int] -> Bool
+premiado [] [] = True
+premiado (x:y) (a:b)
+  | x == a = premiado y b
+  | otherwise = False 
+premiado _ _ = False
+
+quantidadeVendidaEstado :: String -> [(String,String, Int)] -> Int
+quantidadeVendidaEstado _ [] = 0
+quantidadeVendidaEstado es ((e,c,v):b)
+  | es == e = v + quantidadeVendidaEstado es b
+  | otherwise = quantidadeVendidaEstado es b
+
+quantidadeTotalVendida :: [(String,String, Int)] -> Int
+quantidadeTotalVendida [] = 0
+quantidadeTotalVendida ((e,c,v):b) = v + quantidadeTotalVendida b
+
+cidadesNoEstado :: String -> [(String,String, Int)] -> [String]
+cidadesNoEstado _ [] = []
+cidadesNoEstado es ((e,c,v):b)
+  | es == e = c : cidadesNoEstado es b
+  | otherwise = cidadesNoEstado es b
